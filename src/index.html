@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS Serverless Image Upload</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="aws-logo.png" alt="AWS Logo" class="logo" />
+      <h1>AWS Image Uploader</h1>
+      <p>Upload an image → Lambda generates a thumbnail</p>
+    </header>
+
+    <main>
+      <section class="upload-section">
+        <h2>Upload Image</h2>
+        <input type="file" id="fileInput" accept="image/*" />
+        <button id="uploadBtn">Upload</button>
+        <p id="status"></p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
