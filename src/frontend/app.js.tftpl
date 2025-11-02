@@ -1,0 +1,54 @@
+const API_BASE = "${API_BASE}"
+
+document.getElementById('uploadBtn').addEventListener('click', async () => {
+  const fileInput = document.getElementById('fileInput');
+  const statusEl = document.getElementById('status');
+
+  if (!fileInput.files.length) {
+    statusEl.textContent = 'Please select a file first';
+    return;
+  }
+
+  const file = fileInput.files[0];
+  statusEl.textContent = 'Requesting upload URL...';
+
+  try {
+    // 1) Get pre-signed URL via API Gateway
+    const req = await fetch(`$${API_BASE}/signS3Url`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fileName: file.name, contentType: file.type }),
+    });
+
+    if (!req.ok) {
+      throw new Error(`API returned $${req.status}`);
+    }
+
+    const res = await req.json();
+    const uploadUrl = res.uploadUrl;
+    const key = res.key;
+
+    if (!uploadUrl) {
+      throw new Error('No upload URL received');
+    }
+
+    // 2) Upload file to S3 using the pre-signed URL
+    statusEl.textContent = 'Uploading file...';
+    const uploadReq = await fetch(uploadUrl, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': file.type,
+      },
+      body: file,
+    });
+
+    if (!uploadReq.ok) {
+      throw new Error(`Upload failed with status $${uploadReq.status}`);
+    }
+
+    statusEl.textContent = `✅ Upload complete! Key: $${key}`;
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = `❌ Error: $${err.message}`;
+  }
+});
