@@ -15,7 +15,7 @@ document.getElementById('uploadBtn').addEventListener('click', async () => {
 
   try {
     // 1) Get pre-signed URL via API Gateway
-    const req = await fetch(`${API_BASE}/getSignedUrl`, {
+    const req = await fetch(`${API_BASE}/signS3Url`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fileName: file.name, contentType: file.type }),
