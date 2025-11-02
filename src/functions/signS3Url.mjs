@@ -6,9 +6,13 @@ const RAW_BUCKET = process.env.RAW_BUCKET;
 
 export const handler = async (event) => {
   try {
-    const body = JSON.parse(event.body);
-    const fileName = body.fileName;
-    const contentType = body.contentType;
+    const body =
+      typeof event.body === 'string'
+        ? JSON.parse(event.body)
+        : event.body || {};
+
+    const fileName = body.fileName || 'upload.jpg';
+    const contentType = body.contentType || 'image/jpeg';
 
     if (!fileName || !contentType) {
       return {
