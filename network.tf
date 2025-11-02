@@ -117,6 +117,6 @@ resource "aws_api_gateway_integration_response" "this" {
   http_method = aws_api_gateway_method.this.http_method
   status_code = aws_api_gateway_method_response.this.status_code
   response_templates = {
-    "application/json" =  ""
+    "application/json" = ""
   }
 }
