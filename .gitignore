@@ -39,3 +39,8 @@ terraform.rc
 # Ignore zipped function sources
 src/frontend/app.js
 src/functions/*.zip
+.DS_Store
+src/.DS_Store
+src/frontend/.DS_Store
+src/functions/.DS_Store
+src/functions/layers/.DS_Store
