@@ -30,10 +30,7 @@ The solution leverages **Lambda functions**, **API Gateway**, and **S3 event not
    Once the image is successfully uploaded, S3 emits an **event notification**, which invokes another **Lambda function**.
 
 5. **Thumbnail Creation**  
-   This Lambda function processes the uploaded image, generates a thumbnail, and stores it back in the S3 bucket (e.g., in `/thumbs`).
-
-6. **(Optional) Thumbnail Access**  
-   The thumbnail can later be accessed through CloudFront, or a dedicated endpoint can be created to return the processed image.
+   This Lambda function processes the uploaded image, generates a thumbnail, and stores it back in the S3 bucket (in `/thumbs`).
 
 ---
 
@@ -107,7 +104,8 @@ This project is a solid foundation, but several enhancements could make it more 
 
 ## Development Notes
 
-- Both **Lambda functions** and the **frontend code** generations were assisted and refined using LLMs: the goal of this project is to **demonstrate AWS Serverless architecture** and **Infrastructure as Code (IaC)** principles using **Terraform**, not to showcase frontend or backend code quality.
+Both the Lambda functions and front-end components were developed with the assistance of LLMs to accelerate prototyping.
+The primary focus of this project is **cloud architecture** and **Infrastructure as Code (IaC)**, not application-level development.
 
 ---
 
@@ -129,3 +127,14 @@ By separating logic from infrastructure and leveraging managed services, this ar
 - **Maintainability** — clean IaC workflows.
 
 This setup provides a robust foundation for future cloud-native applications that rely on event-based processing, serverless scalability, and globally distributed content delivery.
+
+---
+
+## 📫 Contact
+
+If you’re interested in **AWS architecture**, **Terraform automation**, or **SaaS scalability**, feel free to reach out or start a discussion.
+
+**Author:** antoinep23
+**LinkedIn:** [https://www.linkedin.com/in/antoine-papyn-2b6614207/]
+**GitHub:** [https://github.com/antoinep23]  
+**Codemida:** [https://codemida.com]
